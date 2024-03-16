@@ -1,0 +1,26 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch Package",
+			"type": "go",
+			"request": "launch",
+			"mode": "auto",
+			"program": "${workspaceFolder}/cmd/main",
+			"buildFlags": "-tags=DESKTOP",
+            "cwd": "bin"
+		},
+		{
+            "name": "Test Current File",
+            "type": "go",
+            "request": "launch",
+            "mode": "test",
+            "remotePath": "",
+            "program": "${relativeFileDirname}",
+            "env": {},
+            "args": [],
+            "showLog": true,
+            "cwd": "bin"
+		}
+	]
+}

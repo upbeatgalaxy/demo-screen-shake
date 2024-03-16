@@ -1,0 +1,4 @@
+bin/mogs
+bin/assets
+bin/*.exe
+cmd/main/*.exe

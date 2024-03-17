@@ -28,6 +28,8 @@ var shakerSwitch = 1.0
 var lastShakeDelta = 0.0
 
 func shake(duration time.Duration, intensity float64) {
+	screen.Left = 0
+	screen.Top = 0
 	Shaking = true
 	shakeDuration = duration
 	shakeIntensity = intensity
@@ -54,7 +56,7 @@ func updateShake(deltaTime time.Duration) {
 	shakeCounter += deltaTime
 
 	// Used to normalize every 10 milliseconds
-	shakeDelta := math.Trunc(float64(shakeCounter) / float64(time.Millisecond*10))
+	shakeDelta := math.Trunc(float64(shakeCounter) / float64(time.Millisecond*5))
 
 	if lastShakeDelta < shakeDelta {
 		shakeX := shakerSwitch * shakeIntensity
@@ -63,7 +65,11 @@ func updateShake(deltaTime time.Duration) {
 		screen.Left += shakeX
 		screen.Top += shakeY
 
-		shakerSwitch *= -1
+		// This implementation will shake from -45 to +45
+		if screen.Top != 0 && screen.Left != 0 {
+			shakerSwitch *= -1
+		}
+
 		lastShakeDelta = shakeDelta
 	}
 }
